@@ -56,7 +56,7 @@ public class GameService {
      * @return
      */
     public Game updateGameStatus(Game game, GameStatus gameStatus) {
-        Game g = getGame(game.getId());
+        Game g = getGame(game.getGameId());
         g.setGameStatus(gameStatus);
 
         return g;
@@ -78,7 +78,7 @@ public class GameService {
      * @return
      */
     public Game joinGame(Player player, GameDTO gameDTO) {
-        Game game = getGame((long) gameDTO.getId());
+        Game game = getGame((long) gameDTO.getGameId());
         game.setSecondPlayer(player);
         gameRepository.save(game);
 

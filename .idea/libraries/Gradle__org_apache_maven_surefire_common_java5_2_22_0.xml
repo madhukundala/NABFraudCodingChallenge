@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.maven.surefire:common-java5:2.22.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven.surefire/common-java5/2.22.0/eb7d5f7a16dc21bb66548521e981958a43f50d80/common-java5-2.22.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven.surefire/common-java5/2.22.0/6f1eb4636cfd9d7632678f5dee6445413ffeeaef/common-java5-2.22.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

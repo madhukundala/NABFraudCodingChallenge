@@ -16,11 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GameDTO {
 
-    private int id;
-
     private GameType gameType;
 
     private Piece piece;
+
+    private Long gameId;
 }
 
 

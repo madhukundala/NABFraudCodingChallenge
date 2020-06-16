@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -27,8 +26,6 @@ public class GameController {
     @Autowired
     PlayerService playerService;
 
-    @Autowired
-    HttpSession httpSession;
 
     Logger logger = LoggerFactory.getLogger(GameController.class);
 
@@ -40,9 +37,6 @@ public class GameController {
     public Game createNewGame(@RequestBody GameDTO gameDTO) {
 
         Game game = gameService.createNewGame(playerService.getLoggedUser(), gameDTO);
-        httpSession.setAttribute("gameId", game.getId());
-
-        logger.info("new game id: " + httpSession.getAttribute("gameId") + " stored in session");
 
         return game;
     }
@@ -79,8 +73,6 @@ public class GameController {
      */
     @RequestMapping(value = "/{id}")
     public Game getGameProperties(@PathVariable Long id) {
-
-        httpSession.setAttribute("gameId", id);
 
         return gameService.getGame(id);
     }

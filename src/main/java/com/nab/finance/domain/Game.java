@@ -30,7 +30,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Long gameId;
 
     @ManyToOne
     @JoinColumn(name = "second_player_id")

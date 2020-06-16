@@ -21,4 +21,8 @@ public class CreateMoveDTO {
 
     @NotNull
     int boardColumn;
+
+    @NotNull
+    private Long gameId;
+
 }

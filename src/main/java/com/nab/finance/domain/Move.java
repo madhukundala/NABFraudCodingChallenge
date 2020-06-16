@@ -22,7 +22,7 @@ public class Move {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private int id;
+    private int moveId;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
