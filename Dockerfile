@@ -12,6 +12,6 @@ EXPOSE 9090
 
 HEALTHCHECK --start-period=60s --interval=5s --timeout=3s CMD wget -q http://localhost:9090/actuator/health -0 /tmp.app-health || exit 1
 
-ENTRYPOINT ["java","-cp", "app:app/lib/*","com.nab.finance.TicTacToeGameApplication"]
+ENTRYPOINT ["java","-cp", "app:app/lib/*","com.nab.finance.TicTacToeApplication"]
 
 USER nobody

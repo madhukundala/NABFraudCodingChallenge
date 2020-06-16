@@ -10,11 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication
-public class TicTacToeGameApplication {
+public class TicTacToeApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(TicTacToeGameApplication.class, args);
+        SpringApplication.run(TicTacToeApplication.class, args);
     }
 
     @Bean
@@ -22,8 +22,8 @@ public class TicTacToeGameApplication {
         return (args) -> {
 
             //save a couple of players
-            playerRepository.save(new Player("ala", "ala@ala.com", new BCryptPasswordEncoder().encode("ala")));
-            playerRepository.save(new Player("mary", "mary@mary.com", new BCryptPasswordEncoder().encode("mary")));
+            playerRepository.save(new Player("john", "john@gmail.com", new BCryptPasswordEncoder().encode("john")));
+            playerRepository.save(new Player("paul", "paul@gmail.com", new BCryptPasswordEncoder().encode("paul")));
 
         };
     }
