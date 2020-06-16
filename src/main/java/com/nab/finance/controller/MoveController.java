@@ -37,7 +37,7 @@ public class MoveController {
      * @param createMoveDTO
      * @return
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public Move createMove(@RequestBody CreateMoveDTO createMoveDTO) {
         logger.info("move to insert:" + createMoveDTO.getBoardColumn() + createMoveDTO.getBoardRow());
 
@@ -52,7 +52,7 @@ public class MoveController {
     /**
      * @return
      */
-    @RequestMapping(value = "/listMoves", method = RequestMethod.GET)
+    @GetMapping(value = "/listMoves", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MoveDTO> getMovesInGame(@RequestParam(value = "gameId") Long gameId) {
 
         return moveService.getMovesInGame(gameService.getGame(gameId));
@@ -61,7 +61,7 @@ public class MoveController {
     /**
      * @return
      */
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    @GetMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Position> validateMoves(@RequestParam(value = "gameId") Long gameId) {
         return moveService.getPlayerMovePositionsInGame(gameService.getGame(gameId), playerService.getLoggedUser());
     }
@@ -69,7 +69,7 @@ public class MoveController {
     /**
      * @return
      */
-    @RequestMapping(value = "/playerTurn", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/playerTurn", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean isPlayerTurn(@RequestParam(value = "gameId") Long gameId) {
         return moveService.isPlayerTurn(gameService.getGame(gameId), gameService.getGame(gameId).getFirstPlayer(),
                 gameService.getGame(gameId).getSecondPlayer());

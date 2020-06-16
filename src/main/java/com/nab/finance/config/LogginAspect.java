@@ -13,7 +13,7 @@ public class LogginAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Before("execution(* com.nab.finance.controller.*.*(..))")
+    @Before("execution(* com.nab.finance.controller.*.*(..)) || execution(* com.nab.finance.service.*.*(..))|| execution(* com.nab.finance.repository.*.*(..))")
     public void logBeforeAllMethods(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         logger.debug("action=\"Enter\", method_name=\"{}\" " + methodName, joinPoint.getSignature().getName());
@@ -21,8 +21,8 @@ public class LogginAspect {
 
 
     //Weaving & Weaver
-    @Around("execution(* com.nab.finance.controller.*.*(..))")
-    public Object aroundTime(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("execution(* com.nab.finance.controller.*.*(..)) || execution(* com.nab.finance.service.*.*(..))|| execution(* com.nab.finance.repository.*.*(..))")
+    public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 
         long start = System.currentTimeMillis();
 
@@ -32,7 +32,7 @@ public class LogginAspect {
         return result;
     }
 
-    @AfterReturning(value = "execution(* com.nab.finance.controller.*.*(..))",
+    @AfterReturning(value = "execution(* com.nab.finance.controller.*.*(..)) || execution(* com.nab.finance.service.*.*(..))|| execution(* com.nab.finance.repository.*.*(..))",
             returning = "result")
     public void afterReturning(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
@@ -40,8 +40,8 @@ public class LogginAspect {
     }
 
 
-    @AfterThrowing(pointcut = "execution(* com.nab.finance.controller.*.*(..))", throwing = "ex")
-    public void logAfterThrowingAllMethods(Exception ex) throws Throwable {
+    @AfterThrowing(pointcut = "execution(* com.nab.finance.controller.*.*(..)) || execution(* com.nab.finance.service.*.*(..))|| execution(* com.nab.finance.repository.*.*(..))", throwing = "ex")
+    public void logAfterThrowingError(Exception ex) throws Throwable {
         logger.error("Exception at method_name=\"{}\" " + ex.getClass().getName(), ex.getCause());
     }
 }

@@ -6,10 +6,7 @@ import com.nab.finance.service.PlayerService;
 import com.nab.finance.service.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class PlayerController {
      * @param newPlayerDTO
      * @return
      */
-    @RequestMapping(value = "/createPlayer", method = RequestMethod.POST)
+    @PostMapping(value = "/createPlayer", produces = MediaType.APPLICATION_JSON_VALUE)
     public Player createPlayer(@RequestBody PlayerDTO newPlayerDTO) {
         Player newPlayer = playerService.createNewPlayer(newPlayerDTO);
         return newPlayer;
@@ -38,7 +35,7 @@ public class PlayerController {
     /**
      *
      */
-    @RequestMapping(value = "/players", method = RequestMethod.GET)
+    @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Player> getPlayers() {
         return playerService.listPlayers();
     }
@@ -46,7 +43,7 @@ public class PlayerController {
     /**
      * @return
      */
-    @RequestMapping(value = "/loggedInPlayer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/loggedInPlayer", produces = MediaType.APPLICATION_JSON_VALUE)
     public Response<Player> getLoggedPlayer() {
         return new Response<>(playerService.getLoggedUser(), Response.Status.CREATED);
     }
