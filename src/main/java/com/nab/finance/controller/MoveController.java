@@ -30,10 +30,13 @@ public class MoveController {
     Logger logger = LoggerFactory.getLogger(MoveController.class);
     @Autowired
     private MoveService moveService;
+
     @Autowired
     private PlayerService playerService;
+
     @Autowired
     private GameService gameService;
+
     @Autowired
     private HttpSession httpSession;
 
