@@ -4,7 +4,7 @@ TicTacToe game developed with Spring Boot and Angular JS.
 The description is provided in the blog post available here: http://www.vertabelo.com/blog/technical-articles/tutorial-how-to-develop-a-simple-tic-tac-toe-game-with-spring-boot-and-angularjs
 
 
-
+http://localhost:9090/swagger-ui.html
 
 1) createGame
 2) List avaiable games 
