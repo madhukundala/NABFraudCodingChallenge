@@ -2,21 +2,20 @@ package com.nab.finance.config;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-//@Aspect
-//@Configuration
+///@Aspect
+//@Component
 public class LogginAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
-    @Before("execution(* com.nab.finance.*.*(..))")
+    @Before("execution(* com.nab.finance.controller.*.*(..))")
     public void logBeforeAllMethods(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         logger.debug("action=\"Enter\", method_name=\"{}\" " + methodName, joinPoint.getSignature().getName());
@@ -24,7 +23,7 @@ public class LogginAspect {
 
 
     //Weaving & Weaver
-    @Around("execution(* com.nab.finance.*.*(..))")
+    @Around("execution(* com.nab.finance.controller.*.*(..))")
     public void aroundTime(ProceedingJoinPoint joinPoint) throws Throwable {
 
         long start = System.currentTimeMillis();
@@ -35,7 +34,7 @@ public class LogginAspect {
 
     }
 
-    @AfterReturning(value = "execution(* com.nab.finance.*.*(..))",
+    @AfterReturning(value = "execution(* com.nab.finance.controller.*.*(..))",
             returning = "result")
     public void afterReturning(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
@@ -43,7 +42,7 @@ public class LogginAspect {
     }
 
 
-    @AfterThrowing(pointcut = "execution(* com.nab.finance.*.*(..))", throwing = "ex")
+    @AfterThrowing(pointcut = "execution(* com.nab.finance.controller.*.*(..))", throwing = "ex")
     public void logAfterThrowingAllMethods(Exception ex) throws Throwable {
         logger.error("Exception at method_name=\"{}\" " + ex.getClass().getName(), ex.getCause());
     }
