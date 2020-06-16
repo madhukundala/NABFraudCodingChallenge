@@ -5,12 +5,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-///@Aspect
-//@Component
+@Aspect
+@Component
 public class LogginAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -24,14 +22,14 @@ public class LogginAspect {
 
     //Weaving & Weaver
     @Around("execution(* com.nab.finance.controller.*.*(..))")
-    public void aroundTime(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object aroundTime(ProceedingJoinPoint joinPoint) throws Throwable {
 
         long start = System.currentTimeMillis();
 
         String methodName = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-        joinPoint.proceed();
+        Object result = joinPoint.proceed();
         logger.info("Time Taken by {} is {}", methodName, System.currentTimeMillis() - start);
-
+        return result;
     }
 
     @AfterReturning(value = "execution(* com.nab.finance.controller.*.*(..))",
