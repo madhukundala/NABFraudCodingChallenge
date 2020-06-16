@@ -34,7 +34,6 @@ public class GameController {
      */
     @RequestMapping(value = "/createGame", method = RequestMethod.POST)
     public Game createNewGame(@RequestBody GameDTO gameDTO) {
-        logger.debug("");
         Game game = gameService.createNewGame(playerService.getLoggedUser(), gameDTO);
 
         return game;
