@@ -1,5 +1,5 @@
-# TicTacToe
-TicTacToe game developed with Spring Boot with spring security.
+# TNABFraudCodingChallenge TicTacToe
+This TicTacToe game developed using Java, Spring Boot with spring security.
 
 ##Install Tools
 Gradle version 5.8 ,SDK JAva, IntelliJ, Docker
@@ -9,19 +9,18 @@ Gradle version 5.8 ,SDK JAva, IntelliJ, Docker
 SpringBoot, Mockito, In memoryDB, Java, Docker
 
 ##Swagger UI for endpoints 
-
 http://localhost:9090/swagger-ui.html
 
 ##PostMan URL's below 
 
 For CreateGame : http://localhost:9090/v1/nab/api/game/createGame 
 Basic Auth User Name and password : john 
-Request Body : {
+Request Body : `{
                	"gameType": "COMPETITION",
                	"piece": "X"
-               }
+               }`
                
-Response : {
+Response : `{
                "gameId": 3,
                "secondPlayer": null,
                "firstPlayer": {
@@ -33,20 +32,20 @@ Response : {
                "gameType": "COMPETITION",
                "gameStatus": "WAITS_FOR_PLAYER",
                "created": "2020-06-17T12:02:58.176+0000"
-           } 
+           } `
 
 
 To Join Game :
 
 URL : http://localhost:9090/v1/nab/api/game/joinGame
-Request Body : {
+Request Body : `{
                	"gameId": 3,
                	"gameType": "COMPETITION",
                	"piece": "O"
-               }
+               }`
                
 Response : 
-{
+`{
     "gameId": 3,
     "secondPlayer": {
         "playerId": 2,
@@ -62,7 +61,7 @@ Response :
     "gameType": "COMPETITION",
     "gameStatus": "IN_PROGRESS",
     "created": "2020-06-17T10:19:31.796+0000"
-}
+}`
 
 
 
@@ -76,8 +75,6 @@ gradle bootrun
 
 ## Docker
 ```shell script
-gradle clean docker` 
+gradle clean docker
 ```
 
-
-# NABFraudCodingChallenge
