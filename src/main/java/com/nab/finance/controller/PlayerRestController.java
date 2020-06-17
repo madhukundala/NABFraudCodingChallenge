@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/nab/api/player")
-public class PlayerController {
+public class PlayerRestController {
 
     @Autowired
     PlayerService playerService;

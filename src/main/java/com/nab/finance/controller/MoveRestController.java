@@ -21,9 +21,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("v1/nab/api/move")
-public class MoveController {
+public class MoveRestController {
 
-    Logger logger = LoggerFactory.getLogger(MoveController.class);
+    Logger logger = LoggerFactory.getLogger(MoveRestController.class);
     @Autowired
     private MoveService moveService;
 

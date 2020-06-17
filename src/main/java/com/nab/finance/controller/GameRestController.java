@@ -4,7 +4,6 @@ import com.nab.finance.DTO.GameDTO;
 import com.nab.finance.domain.Game;
 import com.nab.finance.service.GameService;
 import com.nab.finance.service.PlayerService;
-import org.hibernate.annotations.GeneratorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/nab/api/game")
-public class GameController {
+public class GameRestController {
 
     @Autowired
     GameService gameService;
@@ -27,13 +26,13 @@ public class GameController {
     @Autowired
     PlayerService playerService;
 
-    Logger logger = LoggerFactory.getLogger(GameController.class);
+    Logger logger = LoggerFactory.getLogger(GameRestController.class);
 
     /**
      * @param gameDTO
      * @return
      */
-    @PostMapping(value = "/createGame",produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/createGame", produces = MediaType.APPLICATION_JSON_VALUE)
     public Game createNewGame(@RequestBody GameDTO gameDTO) {
         Game game = gameService.createNewGame(playerService.getLoggedUser(), gameDTO);
 
@@ -70,7 +69,7 @@ public class GameController {
      * @param id
      * @return
      */
-    @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Game getGameProperties(@PathVariable Long id) {
 
         return gameService.getGame(id);
