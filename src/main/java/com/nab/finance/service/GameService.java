@@ -97,6 +97,7 @@ public class GameService implements IGameService {
      * @return
      */
     public Game getGame(Long id) {
+
         Optional<Game> game = gameRepository.findById(id);
         if (game.isPresent()) {
             return game.get();

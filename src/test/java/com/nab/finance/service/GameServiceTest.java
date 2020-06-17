@@ -4,10 +4,12 @@ import com.nab.finance.domain.Game;
 import com.nab.finance.domain.Player;
 import com.nab.finance.repository.GameRepository;
 import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
@@ -23,11 +25,11 @@ public class GameServiceTest {
     @Autowired
     private IGameService gameService;
 
-    @Autowired
+    @MockBean
     private GameRepository gameRepository;
 
 
-    // @Test
+    @Test
     public void getGameTest() {
         Game game = new Game();
 
@@ -36,7 +38,7 @@ public class GameServiceTest {
         game.setGameId(Long.valueOf(3));
         Optional<Game> gameObj = Optional.of(game);
 
-        Mockito.when(gameService.getGame(Mockito.anyLong())).thenReturn(game);
+        Mockito.when(gameRepository.findById(Mockito.anyLong())).thenReturn(gameObj);
 
         Game gameResponse = gameService.getGame(Long.valueOf(3));
         Assert.assertNotNull(gameResponse);
