@@ -1,24 +1,47 @@
 package com.nab.finance.service;
 
+import com.nab.finance.domain.Game;
+import com.nab.finance.domain.Player;
+import com.nab.finance.repository.GameRepository;
+import org.junit.Assert;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Date;
+import java.util.Optional;
 
 /**
  * Created by madhu on 15.06.20.
  */
 @SpringBootTest
-@AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
 public class GameServiceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private IGameService gameService;
 
-    @MockBean
-    private GameService gameService;
+    @Autowired
+    private GameRepository gameRepository;
 
-    private String validResponsePath = "/response.json";
+
+    // @Test
+    public void getGameTest() {
+        Game game = new Game();
+
+        game.setCreated(new Date());
+        game.setFirstPlayer(new Player());
+        game.setGameId(Long.valueOf(3));
+        Optional<Game> gameObj = Optional.of(game);
+
+        Mockito.when(gameService.getGame(Mockito.anyLong())).thenReturn(game);
+
+        Game gameResponse = gameService.getGame(Long.valueOf(3));
+        Assert.assertNotNull(gameResponse);
+
+    }
+
 
 }
