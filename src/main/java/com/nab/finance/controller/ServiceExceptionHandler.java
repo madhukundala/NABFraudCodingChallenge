@@ -13,7 +13,6 @@ public class ServiceExceptionHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ApiError handleApplicationException(Exception e) {
-        ApiError apiError = new ApiError("ERR_NAB_01", e.getMessage());
-        return apiError;
+        return new ApiError("ERR_NAB_01", e.getMessage());
     }
 }

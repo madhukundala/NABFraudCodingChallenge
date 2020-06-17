@@ -41,7 +41,7 @@ public class MoveRestController {
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public Move createMove(@RequestBody CreateMoveDTO createMoveDTO) {
 
-        logger.info("move to insert:" + createMoveDTO.getBoardColumn() + createMoveDTO.getBoardRow());
+        logger.info("move to insert: {}+{} ", createMoveDTO.getBoardColumn() , createMoveDTO.getBoardRow());
 
         Move move = moveService.createMove(gameService.getGame(createMoveDTO.getGameId()), playerService.getLoggedUser(), createMoveDTO);
         Game game = gameService.getGame(createMoveDTO.getGameId());
