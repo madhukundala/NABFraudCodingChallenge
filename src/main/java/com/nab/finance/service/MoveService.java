@@ -10,6 +10,7 @@ import com.nab.finance.enums.GameStatus;
 import com.nab.finance.enums.GameType;
 import com.nab.finance.enums.Piece;
 import com.nab.finance.repository.MoveRepository;
+import com.nab.finance.util.GameLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,15 +25,11 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class MoveService {
-
-    private final MoveRepository moveRepository;
-
+public class MoveService implements IMoveService {
 
     @Autowired
-    public MoveService(MoveRepository moveRepository) {
-        this.moveRepository = moveRepository;
-    }
+    private MoveRepository moveRepository;
+
 
     /**
      * @param game
@@ -106,7 +103,7 @@ public class MoveService {
             moveDTO.setBoardRow(move.getBoardRow());
             moveDTO.setCreated(move.getCreated());
             moveDTO.setGameStatus(move.getGame().getGameStatus());
-            moveDTO.setUserName(move.getPlayer() == null ? GameType.COMPUTER.toString() : move.getPlayer().getUserName());
+            moveDTO.setUserName(move.getPlayer() != null ? move.getPlayer().getUserName() : null);
             moveDTO.setPlayerPieceCode(currentPiece);
             moves.add(moveDTO);
 

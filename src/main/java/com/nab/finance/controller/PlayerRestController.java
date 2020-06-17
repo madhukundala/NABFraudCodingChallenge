@@ -2,7 +2,7 @@ package com.nab.finance.controller;
 
 import com.nab.finance.DTO.PlayerDTO;
 import com.nab.finance.domain.Player;
-import com.nab.finance.service.PlayerService;
+import com.nab.finance.service.IPlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ import java.util.List;
 public class PlayerRestController {
 
     @Autowired
-    PlayerService playerService;
+    IPlayerService playerService;
 
     /**
      * @param newPlayerDTO
@@ -27,6 +27,7 @@ public class PlayerRestController {
      */
     @PostMapping(value = "/createPlayer", produces = MediaType.APPLICATION_JSON_VALUE)
     public Player createPlayer(@RequestBody PlayerDTO newPlayerDTO) {
+
         Player newPlayer = playerService.createNewPlayer(newPlayerDTO);
         return newPlayer;
     }
@@ -36,6 +37,7 @@ public class PlayerRestController {
      */
     @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Player> getPlayers() {
+
         return playerService.listPlayers();
     }
 

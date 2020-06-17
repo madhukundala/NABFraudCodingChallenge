@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Repository
 public interface GameRepository extends CrudRepository<Game, Long> {
+
     List<Game> findByGameTypeAndGameStatus(GameType GameType, GameStatus GameStatus);
 
     List<Game> findByGameStatus(GameStatus gameStatus);

@@ -1,4 +1,4 @@
-package com.nab.finance.service;
+package com.nab.finance.util;
 
 import com.nab.finance.domain.Game;
 import com.nab.finance.domain.Position;
@@ -25,7 +25,7 @@ public class GameLogic {
      * @param positions Board positions from player moves retrieved from database
      * @return true or false if the player is a winner
      */
-    static boolean isWinner(List<Position> positions) {
+    public static boolean isWinner(List<Position> positions) {
 
         return getWinningPositions().stream().anyMatch(positions::containsAll);
     }
@@ -35,7 +35,7 @@ public class GameLogic {
      *
      * @return the list of the winning position's list
      */
-    static List<List<Position>> getWinningPositions() {
+    public static List<List<Position>> getWinningPositions() {
         List<List<Position>> winingPositions = new ArrayList<>();
 
         winingPositions.add(asList(new Position(1, 1), new Position(1, 2), new Position(1, 3)));
@@ -57,7 +57,7 @@ public class GameLogic {
      *
      * @return list of all board's positions
      */
-    static List<Position> getAllPositions() {
+    public static List<Position> getAllPositions() {
         List<Position> positions = new ArrayList<>();
         for (int row = 1; row <= 3; row++) {
             for (int col = 1; col <= 3; col++) {
@@ -72,20 +72,20 @@ public class GameLogic {
      * @param numberOfSecondPlayerMovesInGame
      * @return true or false depending on the count of the player's moves
      */
-    static boolean playerTurn(int numberOfFirstPlayerMovesInGame, int numberOfSecondPlayerMovesInGame) {
+    public static boolean playerTurn(int numberOfFirstPlayerMovesInGame, int numberOfSecondPlayerMovesInGame) {
         return numberOfFirstPlayerMovesInGame == numberOfSecondPlayerMovesInGame || numberOfFirstPlayerMovesInGame == 0;
     }
 
-    static boolean isBoardIsFull(List<Position> takenPositions) {
+    public static boolean isBoardIsFull(List<Position> takenPositions) {
         return takenPositions.size() == 9;
     }
 
     // GENERATE COMPUTER'S MOVES
-    static List<Position> getOpenPositions(List<Position> takenPositions) {
+    public static List<Position> getOpenPositions(List<Position> takenPositions) {
         return getAllPositions().stream().filter(p -> !takenPositions.contains(p)).collect(Collectors.toList());
     }
 
-    static Position nextAutoMove(List<Position> takenPositions) {
+    public static Position nextAutoMove(List<Position> takenPositions) {
         return getOpenPositions(takenPositions).get(0);
     }
 

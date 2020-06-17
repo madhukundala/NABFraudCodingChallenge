@@ -2,7 +2,7 @@ package com.nab.finance.controller;
 
 import com.nab.finance.DTO.GameDTO;
 import com.nab.finance.domain.Game;
-import com.nab.finance.service.GameService;
+import com.nab.finance.service.IGameService;
 import com.nab.finance.service.PlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +21,12 @@ import java.util.List;
 public class GameRestController {
 
     @Autowired
-    GameService gameService;
-
-    @Autowired
     PlayerService playerService;
 
     Logger logger = LoggerFactory.getLogger(GameRestController.class);
+
+    @Autowired
+    private IGameService gameService;
 
     /**
      * @param gameDTO
@@ -34,8 +34,8 @@ public class GameRestController {
      */
     @PostMapping(value = "/createGame", produces = MediaType.APPLICATION_JSON_VALUE)
     public Game createNewGame(@RequestBody GameDTO gameDTO) {
-        Game game = gameService.createNewGame(playerService.getLoggedUser(), gameDTO);
 
+        Game game = gameService.createNewGame(playerService.getLoggedUser(), gameDTO);
         return game;
     }
 
@@ -44,6 +44,7 @@ public class GameRestController {
      */
     @GetMapping(value = "/listGames", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Game> getGamesToJoin() {
+
         return gameService.getGamesToJoin(playerService.getLoggedUser());
     }
 
@@ -53,6 +54,7 @@ public class GameRestController {
      */
     @PostMapping(value = "/joinGame", produces = MediaType.APPLICATION_JSON_VALUE)
     public Game joinGame(@RequestBody GameDTO gameDTO) {
+
         Game game = gameService.joinGame(playerService.getLoggedUser(), gameDTO);
         return game;
     }
@@ -62,6 +64,7 @@ public class GameRestController {
      */
     @GetMapping(value = "/player/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Game> getPlayerGames() {
+
         return gameService.getPlayerGames(playerService.getLoggedUser());
     }
 

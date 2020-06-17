@@ -20,15 +20,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class GameService {
-
-    private final GameRepository gameRepository;
-
+public class GameService implements IGameService {
 
     @Autowired
-    public GameService(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
+    private GameRepository gameRepository;
 
     /**
      * @param player
@@ -40,8 +35,7 @@ public class GameService {
         game.setFirstPlayer(player);
         game.setGameType(gameDTO.getGameType());
         game.setFirstPlayerPieceCode(gameDTO.getPiece());
-        game.setGameStatus(gameDTO.getGameType() == GameType.COMPUTER ? GameStatus.IN_PROGRESS :
-                GameStatus.WAITS_FOR_PLAYER);
+        game.setGameStatus(GameStatus.WAITS_FOR_PLAYER);
 
         game.setCreated(new Date());
         gameRepository.save(game);

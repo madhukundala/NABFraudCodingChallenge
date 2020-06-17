@@ -6,7 +6,7 @@ import com.nab.finance.domain.Game;
 import com.nab.finance.domain.Move;
 import com.nab.finance.domain.Position;
 import com.nab.finance.service.GameService;
-import com.nab.finance.service.MoveService;
+import com.nab.finance.service.IMoveService;
 import com.nab.finance.service.PlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +24,9 @@ import java.util.List;
 public class MoveRestController {
 
     Logger logger = LoggerFactory.getLogger(MoveRestController.class);
+
     @Autowired
-    private MoveService moveService;
+    private IMoveService moveService;
 
     @Autowired
     private PlayerService playerService;
@@ -39,6 +40,7 @@ public class MoveRestController {
      */
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public Move createMove(@RequestBody CreateMoveDTO createMoveDTO) {
+
         logger.info("move to insert:" + createMoveDTO.getBoardColumn() + createMoveDTO.getBoardRow());
 
         Move move = moveService.createMove(gameService.getGame(createMoveDTO.getGameId()), playerService.getLoggedUser(), createMoveDTO);
@@ -63,6 +65,7 @@ public class MoveRestController {
      */
     @GetMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Position> validateMoves(@RequestParam(value = "gameId") Long gameId) {
+
         return moveService.getPlayerMovePositionsInGame(gameService.getGame(gameId), playerService.getLoggedUser());
     }
 
@@ -71,6 +74,7 @@ public class MoveRestController {
      */
     @GetMapping(value = "/playerTurn", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean isPlayerTurn(@RequestParam(value = "gameId") Long gameId) {
+
         return moveService.isPlayerTurn(gameService.getGame(gameId), gameService.getGame(gameId).getFirstPlayer(),
                 gameService.getGame(gameId).getSecondPlayer());
     }

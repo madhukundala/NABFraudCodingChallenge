@@ -1,0 +1,35 @@
+#
+# [ Database Configuration Section ]
+#
+### Server port ###
+server:
+  port: 9090
+### Springboot application name ###
+spring:
+  application:
+    name: tictactoe-NabCodeChallenge
+  datasource:
+    username: sa
+    password: sa
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+
+
+logging:
+  file: ${LOG_PATH:./build/logs}/${log_file_name:tictactoeTest.log}
+  pattern:
+    console: "date=\"%d{yyyy-MM-dd''T''HH:mm:ss.SSSZ}\" level=%level logger=%logger correlation_id=%X{x-correlationId} path=%X{path} %msg%n"
+    file: "date=\"%d{yyyy-MM-dd''T''HH:mm:ss.SSSZ}\" level=%level logger=%logger correlation_id=%X{x-correlationId} path=%X{path} %msg%n"
+  level:
+    root: INFO
+    com:
+      jbwere: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+

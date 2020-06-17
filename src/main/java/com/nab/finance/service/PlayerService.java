@@ -18,15 +18,11 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class PlayerService {
+public class PlayerService implements IPlayerService {
 
-    private final PlayerRepository playerRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     @Autowired
-    public PlayerService(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
-    }
+    private PlayerRepository playerRepository;
 
     /**
      * @param playerDTO

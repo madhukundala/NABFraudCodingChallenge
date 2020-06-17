@@ -1,33 +1,83 @@
 # TicTacToe
-TicTacToe game developed with Spring Boot and Angular JS.
+TicTacToe game developed with Spring Boot with spring security.
 
-The description is provided in the blog post available here: http://www.vertabelo.com/blog/technical-articles/tutorial-how-to-develop-a-simple-tic-tac-toe-game-with-spring-boot-and-angularjs
+##Install Tools
+Gradle version 5.8 ,SDK JAva, IntelliJ, Docker
 
+
+##Dev Technologies   
+SpringBoot, Mockito, In memoryDB, Java, Docker
+
+##Swagger UI for endpoints 
 
 http://localhost:9090/swagger-ui.html
 
-1) createGame
-2) List avaiable games 
-3) Join Game
-4)
+##PostMan URL's below 
+
+For CreateGame : http://localhost:9090/v1/nab/api/game/createGame 
+Basic Auth User Name and password : john 
+Request Body : {
+               	"gameType": "COMPETITION",
+               	"piece": "X"
+               }
+               
+Response : {
+               "gameId": 3,
+               "secondPlayer": null,
+               "firstPlayer": {
+                   "playerId": 1,
+                   "userName": "john",
+                   "email": "john@gmail.com"
+               },
+               "firstPlayerPieceCode": "X",
+               "gameType": "COMPETITION",
+               "gameStatus": "WAITS_FOR_PLAYER",
+               "created": "2020-06-17T12:02:58.176+0000"
+           } 
 
 
-# App details
-The application is based on the provided below database design:
+To Join Game :
 
-<img src="http://www.vertabelo.com/_file/blog/tutorial-how-to-develop-a-simple-tic-tac-toe-game-with-spring-boot-and-angularjs/tictactoe-database-model.png"/>
+URL : http://localhost:9090/v1/nab/api/game/joinGame
+Request Body : {
+               	"gameId": 3,
+               	"gameType": "COMPETITION",
+               	"piece": "O"
+               }
+               
+Response : 
+{
+    "gameId": 3,
+    "secondPlayer": {
+        "playerId": 2,
+        "userName": "paul",
+        "email": "paul@gmail.com"
+    },
+    "firstPlayer": {
+        "playerId": 1,
+        "userName": "john",
+        "email": "john@gmail.com"
+    },
+    "firstPlayerPieceCode": "X",
+    "gameType": "COMPETITION",
+    "gameStatus": "IN_PROGRESS",
+    "created": "2020-06-17T10:19:31.796+0000"
+}
 
-#Screenshots
 
 
-<img src="http://www.vertabelo.com/_file/blog/tutorial-how-to-develop-a-simple-tic-tac-toe-game-with-spring-boot-and-angularjs/player-panel-actions.png"/>
-    
-        
-        
-<img src="http://www.vertabelo.com/_file/blog/tutorial-how-to-develop-a-simple-tic-tac-toe-game-with-spring-boot-and-angularjs/get-move-list.png"/>
+# To Start application and deploy it using docker 
 
-# Installation
+## Run Local 
+```shell script
+gradle clean build 
+gradle bootrun
+```
 
-`gradle bootrun` 
+## Docker
+```shell script
+gradle clean docker` 
+```
+
 
 # NABFraudCodingChallenge
