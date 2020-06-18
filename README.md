@@ -15,7 +15,8 @@ SpringBoot, Mockito, In memoryDB, Java, Docker
 
 ##Swagger UI for endpoints 
 http://localhost:9090/swagger-ui.html
-![Alt text](/Users/708050/Documents/tictactoe-NabCodeChallenge/src/main/resources/swagger.png?raw=true "Swagger")
+![Screenshot](../tictactoe-NabCodeChallenge/src/main/resources/swagger.png)
+
 
 
 
