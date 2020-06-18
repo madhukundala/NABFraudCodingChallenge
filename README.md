@@ -4,12 +4,30 @@ This TicTacToe game developed using Java, Spring Boot with spring security.
 ##Install Tools
 Gradle version 5.8 ,SDK JAva, IntelliJ, Docker
 
+##Installation Steps :
+1.Download and install Java and set the java home and path 
+2.Download and install gradle and set the papth
+3.Download and install Docker . 
+
 
 ##Dev Technologies   
 SpringBoot, Mockito, In memoryDB, Java, Docker
 
 ##Swagger UI for endpoints 
 http://localhost:9090/swagger-ui.html
+![Alt text](/Users/708050/Documents/tictactoe-NabCodeChallenge/src/main/resources/swagger.png?raw=true "Swagger")
+
+
+
+##Basic Authentication
+We have used basic authentication login form for our api's as i dont have any usr jwt provider , While executing any end point we need to provide the username and password . 
+For testing purposes we have created two users . 
+
+username and password :  john
+username and password :  paul
+
+Usually here in NAB we will use DAF for providing JWT reference and login .   
+
 
 ##PostMan URL's below 
 
