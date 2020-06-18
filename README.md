@@ -18,8 +18,6 @@ http://localhost:9090/swagger-ui.html
 ![Screenshot](../tictactoe-NabCodeChallenge/src/main/resources/swagger.png)
 
 
-
-
 ##Basic Authentication
 We have used basic authentication login form for our api's as i dont have any usr jwt provider , While executing any end point we need to provide the username and password . 
 For testing purposes we have created two users . 
